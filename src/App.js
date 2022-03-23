@@ -13,7 +13,7 @@ function App() {
       result.ok ? setData(result.json()) : console.log("Fetch error:" + result.status)
     })
     .catch(err => setError(error));
-    console.log(data);
+    console.log(data,error);
     },[]);
 
   return (
