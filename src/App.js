@@ -1,27 +1,29 @@
 import React, {useState,useEffect} from "react";
 import "./App.css";
-const APIKey = "X7hhjc1HgiuvLkLaToKUINEpmr0MrKb9sZeIsDfU";
-const NASAUrl = 'https://api.nasa.gov/planetary/apod?api_key=' + APIKey;
-console.log(NASAUrl);
+import Header from "./components/Header/Header";
+import Date from "./components/Date/Date";
+import Photo from "./components/Photo/Photo";
+import Explanation from "./components/Explanation/Explanation";
+import NASAUrl from "./components/constants";
 function App() {
   const [data,setData] = useState();
   const [error,setError] = useState();
-
   useEffect( () => {
-    fetch(NASAUrl)
-    .then(result => {
-      result.ok ? setData(result.json()) : console.log("Fetch error:" + result.status)
-    })
-    .catch(err => setError(error));
-    console.log(data,error);
-    },[]);
+    const fetchData = async () => {
+      let result = await fetch(NASAUrl);
+      let jSon = await result.json();
+      console.log(jSon);
+      result.ok ? setData(jSon) : setError(result.status);
+    };
+    fetchData().catch(err => console.log(err));
+}, []);
 
   return (
     <div className="App">
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun <span role="img" aria-label='go!'>🚀</span>!
-      </p>
+      <Header />
+      <Date date={data.date} />
+      <Photo title={data.title} hdurl={data.hdurl} copyright={data.copyright}/>
+      <Explanation explanation={data.explanation} />
     </div>
   );
 }

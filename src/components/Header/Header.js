@@ -1,4 +1,3 @@
-export default Header;
 
 const Header = () => {
     return (
@@ -9,3 +8,4 @@ const Header = () => {
     )
     
 }
+export default Header;
