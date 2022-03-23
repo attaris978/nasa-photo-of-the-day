@@ -1,3 +1,4 @@
+import "./Photo.css";
 const Photo = (props) => {
     const {title, hdurl, copyright} = props;
     return (

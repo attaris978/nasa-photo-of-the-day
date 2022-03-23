@@ -1,0 +1,12 @@
+div{
+    display:flex;
+    align-content:center;
+}
+img{
+    
+    max-height:15vh;
+}
+
+h1{
+    display:inline-block;
+}

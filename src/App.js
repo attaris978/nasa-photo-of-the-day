@@ -7,25 +7,26 @@ import Explanation from "./components/Explanation/Explanation";
 import NASAUrl from "./components/constants";
 function App() {
   const [data,setData] = useState();
-  const [error,setError] = useState();
+  // const [error,setError] = useState();
   useEffect( () => {
     const fetchData = async () => {
       let result = await fetch(NASAUrl);
       let jSon = await result.json();
-      console.log(jSon);
-      result.ok ? setData(jSon) : setError(result.status);
+      // console.log(jSon);
+      
+      result.ok ? setData(jSon) : console.error(result.status);
     };
     fetchData().catch(err => console.log(err));
 }, []);
 
-  return (
+ return ( !data || (
     <div className="App">
       <Header />
       <Date date={data.date} />
-      <Photo title={data.title} hdurl={data.hdurl} copyright={data.copyright}/>
+      <Photo title={data.title } hdurl={data.hdurl} copyright={data.copyright}/>
       <Explanation explanation={data.explanation} />
     </div>
-  );
+  ));
 }
 
 export default App;

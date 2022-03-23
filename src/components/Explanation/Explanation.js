@@ -1,3 +1,4 @@
+import "./Explanation.css";
 const Explanation = (props) => {
     const {explanation} = props;
     return (

@@ -1,0 +1,10 @@
+div{
+    display:flex;
+    flex-flow:column nowrap;
+    align-items:center;
+}
+img{
+    max-width:80vw;
+    max-height:60vh;
+    flex:auto;
+}
